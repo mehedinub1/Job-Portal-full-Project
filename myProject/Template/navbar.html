@@ -1,0 +1,14 @@
+
+<ul>
+  <li><a href=" {% url 'homePage' %} ">Home</a></li>
+  <li><a href=" {% url 'jobFeed' %} ">Feed</a></li>
+  
+  {% if request.user.user_type == 'seeker' %}
+  
+  <li><a href=" {% url 'skillMatchingPage' %} ">Skill Matching</a></li>
+    
+  {% endif %}
+    
+  
+  <li style="float:right"><a class="active" href=" {% url 'profilePage' %} ">Profile</a></li>
+</ul>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="text-align: center;">Welcome to Job Hunter</h1>
+ 
+    <div class="stats-container">
+        <div class="stat-card">
+            <i class="fas fa-briefcase fa-2x"></i>
+            <h3>Total Jobs: {{ total_job }}</h3>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users fa-2x"></i>
+            <h3>Total Users: {{ total_user }}</h3>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-paper-plane fa-2x"></i>
+            <h3>Total Applications: {{ total_applications }}</h3>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stats-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .stat-card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        flex: 1;
+        margin: 10px;
+    }
+
+    .stat-card h3 {
+        margin-top: 10px;
+    }
+
+    .stat-card i {
+        color: #28a745; /* Customize icon color */
+    }
+</style>
+
+<!-- Include Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% endblock body %}

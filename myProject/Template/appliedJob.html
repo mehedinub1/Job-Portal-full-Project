@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Jobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #7c87eb;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-jobs {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+
+
+{% if applied_jobs %}
+    <table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Resume</th>
+                <th>Status</th>
+                <th>Skills</th>
+                <th>Cover Letter</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in applied_jobs %}
+                <tr>
+                    <td>{{ job.job_title }}</td>
+                    <td>{{ job.job.user.username }}</td>
+                    <td>{{ job.Resume }}</td> 
+                    <td>{{ job.Cover }}</td>
+                    <td>{{ job.Skills }}</td>
+                   
+                    <td>{{ job.job }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No jobs applied yet.</p>
+ {% endif %}
+
+
+</div>
+
+</body>
+</html>
+{% endblock body %}
+

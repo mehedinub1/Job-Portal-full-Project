@@ -1,0 +1,110 @@
+
+{% extends 'base.html' %} 
+ 
+{% block body %} 
+ 
+<style> 
+    body { 
+        font-family: Arial, sans-serif; 
+        background-color: #f4f4f4; 
+        margin: 0; 
+        padding: 20px; 
+    } 
+     
+    .container { 
+        max-width: 600px; 
+        margin: auto; 
+        background: white; 
+        padding: 20px; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    } 
+     
+    h2 { 
+        text-align: center; 
+        margin-bottom: 20px; 
+    } 
+ 
+    label { 
+        display: block; 
+        margin-bottom: 8px; 
+        font-weight: bold; 
+    } 
+ 
+    input[type="text"], 
+    input[type="file"], 
+    select, 
+    textarea { 
+        width: 100%; 
+        padding: 10px; 
+        margin-bottom: 20px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+    } 
+ 
+    button { 
+        width: 100%; 
+        padding: 10px; 
+        background-color: #4CAF50; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        font-size: 1.1em; 
+        cursor: pointer; 
+    } 
+ 
+    button:hover { 
+        background-color: #45a049; 
+    } 
+ 
+    .form-group { 
+        margin-bottom: 20px; 
+    } 
+ 
+    .error-message { 
+        color: red; 
+        font-size: 0.9em; 
+        margin-top: -15px; 
+        margin-bottom: 15px; 
+    } 
+</style> 
+ 
+<div class="container"> 
+    <h2>Edit Profile</h2> 
+    <form action="" method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+            <div class="form-group"> 
+                <label for="username">Username</label> 
+                <input type="text" id="username" name="username" value="{{ request.user.username }}" required> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label for="username">E-Mail</label> 
+                <input type="text" id="username" name="email" value="{{ request.user.email }}" required> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label for="username">First Name</label> 
+                <input type="text" id="username" name="first_name" value="{{request.user.first_name }}" required> 
+            </div> 
+ 
+             
+            <div class="form-group"> 
+                <label for="username">Last Name</label> 
+                <input type="text" id="username" name="last_name" value="{{ request.user.last_name }}" required> 
+            </div> 
+ 
+ 
+ 
+ 
+            <div class="form-group"> 
+                <label for="Profile_Pic">Profile Picture</label> 
+                <img src="/{{ user.Profile_Pic }}" alt="" width="50" height="50">
+                <input type="file" id="Profile_Pic" name="Profile_Pic"> 
+            </div> 
+ 
+        <button type="submit">Update Profile</button> 
+    </form> 
+</div> 
+ 
+{% endblock body %}

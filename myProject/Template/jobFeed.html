@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        
+        .search-bar {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-control {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .job-listings {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s, transform 0.3s;
+            width: calc(33.333% - 20px);
+            margin: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: white;
+            display: inline-block;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .container h4 {
+            margin: 10px 0;
+            font-size: 18px; /* Adjusted font size for better readability */
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .apply-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: calc(50% - 20px); /* Adjust card width for medium screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 100%; /* Full width for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-bar">
+        <div class="input-group">
+            <form action="{% url 'searchJob' %}" method="GET">
+                <input type="text" class="form-control" name="query" placeholder="Search for jobs..." id="search-input">
+                <button type="submit" class="btn" id="search-button">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="job-listings">
+        {% for i in jobs %}
+        <div class="card">
+            <img src="/{{ i.job_Pic }}" alt="{{ i.job_title }}">
+            <div class="container">
+                <h4><b>{{ i.job_title }}</b></h4>
+                <h4>CATEGORY: <b>{{ i.category }}</b></h4>
+                <h4>SKILL: <b>{{ i.skills }}</b></h4>
+                <h4>VACANCY: <b>{{ i.vacancy }}</b></h4>
+                {% if request.user.user_type == "seeker" %}
+                <a href="{% url 'applyJob' i.id %}" class="apply-btn">Apply Now</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+
+{% endblock body %}

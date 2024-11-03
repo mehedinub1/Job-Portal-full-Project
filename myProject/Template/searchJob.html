@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    
+<h1>You are searching for: "{{ query }}" </h1>
+
+
+  
+
+{% for i in jobs %}
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+</style>
+</head>
+<body>
+
+
+<h2>Job Title: <b>{{i.job_title}}</b></h2>
+
+<div class="card">
+  <img src="/{{i.job_Pic}}" height="250 px" width="100 px" alt="Avatar" style="width:100%">
+  <div class="container">
+    <h4>Vacancy:<b>{{i.vacancy}}</b></h4> 
+    <h4>Skill:<b>{{i.skills}}</b></h4> 
+    
+    <h4>Description<p>{{i.description}}</p></h4>
+       
+    {% if i.category == 'full_time' %}
+
+    <h1><b>Full Time</b></h1> 
+        
+    {% endif %}
+
+    {% if i.category == 'part_time' %}
+
+    <h1><b>Part Time</b></h1> 
+        
+    {% endif %}
+
+    {% if i.category == 'contract' %}
+
+    <h1><b>Contract</b></h1> 
+        
+    {% endif %}
+
+    {% if i.category == 'internship' %}
+
+    <h1><b>Internship</b></h1> 
+        
+    {% endif %}
+
+    {% if i.category == 'temporary' %}
+
+    <h1><b>Temporary</b></h1> 
+        
+    {% endif %}
+
+    {% if request.user.user_type == 'seeker' %}
+
+
+    <a href="{% url 'applyJob' i.id %}" class="apply-btn">Apply Now</a>
+        
+            
+    {% endif %}
+
+  </div>
+</div>
+
+</body>
+</html> 
+
+
+{% endfor %}
+
+{% endblock body %}
+    
